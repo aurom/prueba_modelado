@@ -36,14 +36,11 @@ void print_list(struct node_struct* l){
  * Da la longitud de la lista de forma iterativa.
  */
 int len_iter(struct node_struct* n){
-	/*generamos espacio en la memoria para aux*/
-	struct node_struct* aux = (struct node_struct*) malloc (sizeof(struct node_struct*)); 
 	int count;
 	count = 0;
-	aux = n; //ponemos lo de n en aux.
-	while (aux){
-		count = count +1; //incrementamos el contador hasta que acabemos de recorrer la lista.
-		aux = aux->next; //pasamos al siguiente nodo.
+	while (n){
+		++count; //incrementamos el contador hasta que acabemos de recorrer la lista.
+		n = n->next; //pasamos al siguiente nodo.
 	}
 	return count;
 }
@@ -60,15 +57,12 @@ int len_rec(struct node_struct* n){
 * Da el valor maximo almacenado en la lista n.
 */
 int max (struct node_struct* n){
-	/*generamos espacio en la memorua para aux*/
-	struct node_struct* aux =(struct node_struct*) malloc(sizeof(struct node_struct*));
 	int max; 
-	aux = n; //ponemos lo de n en aux.
-	max = aux->value; //ponemos el valor de la cabeza en max.
-	while(aux){
-		if(aux->value > max)
-			max = aux->value; //mientras recorremos la lista si hay alguno mas grande que max actualizamos.
-		aux = aux->next;
+	max = n->value; //ponemos el valor de la cabeza en max.
+	while(n){
+		if(n->value > max)
+			max = n->value; //mientras recorremos la lista si hay alguno mas grande que max actualizamos.
+		n = n->next;
 	}
 	return max; //regresamos max
 }
@@ -77,16 +71,13 @@ int max (struct node_struct* n){
  */
 struct node_struct* inversa(struct node_struct* n){
 	/*Generamos espacio en la memoria para el nodo auxiliar*/
-	struct node_struct* aux = (struct node_struct*) malloc(sizeof(struct node_struct*)); //sirve para no alterar la lista.
 	struct node_struct* inversa = NULL; //ponemos en NULL a la lista que sera la inversa de n.
-	aux = n; //guardamos lo de n en aux.
-	while(aux){
+	while(n){
 		struct node_struct* aux2; // nodo auxiliar 2
-		aux2 = newNode(aux->value);//agregas el valor de aux en aux2
+		aux2 = newNode(n->value);//agregas el valor de aux en aux2
 		aux2->next = inversa; //el siguiente de aux sera la inversa
 		inversa = aux2; //actualizas la inversa al nodo aux
-		aux = aux->next; //recorremos aux.
+		n = n->next; //recorremos aux.
 	}
 	return inversa; //lista inversa
 }
-
