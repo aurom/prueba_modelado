@@ -70,7 +70,6 @@ int max (struct node_struct* n){
  * Invierte la lista n.
  */
 struct node_struct* inversa(struct node_struct* n){
-	/*Generamos espacio en la memoria para el nodo auxiliar*/
 	struct node_struct* inversa = NULL; //ponemos en NULL a la lista que sera la inversa de n.
 	while(n){
 		struct node_struct* aux2; // nodo auxiliar 2
